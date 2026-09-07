@@ -1,0 +1,17 @@
+target/
+*.jar
+*.war
+.idea/
+*.iml
+.vscode/
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
+*.log
+logs/
+.env
+*.env
+nacos/data/
+minio/data/
+docs/项目亮点-简历素材.md

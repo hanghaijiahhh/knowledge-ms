@@ -1,0 +1,29 @@
+server:
+  port: 8086
+
+spring:
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASS}
+  elasticsearch:
+    uris: ${ES_URIS:http://127.0.0.1:9200}
+    connection-timeout: 5s
+    socket-timeout: 30s
+  rabbitmq:
+    host: ${MQ_HOST:127.0.0.1}
+    port: ${MQ_PORT:5672}
+    username: ${MQ_USER:guest}
+    password: ${MQ_PASS}
+
+embedding:
+  provider: ${EMBED_PROVIDER:siliconflow}
+  api-key: ${EMBED_API_KEY}
+  base-url: https://api.siliconflow.cn
+  model: BAAI/bge-large-zh-v1.5
+  dimensions: 1024
+
+chunk:
+  max-size: 500
+  overlap: 50

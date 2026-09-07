@@ -1,0 +1,54 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        # 认证服务
+        - id: knowledge-auth
+          uri: lb://knowledge-auth
+          predicates:
+            - Path=/auth/**
+        # 文档服务
+        - id: knowledge-doc
+          uri: lb://knowledge-doc
+          predicates:
+            - Path=/doc/**
+        # 文件服务
+        - id: knowledge-file
+          uri: lb://knowledge-file
+          predicates:
+            - Path=/file/**
+        # 搜索服务
+        - id: knowledge-search
+          uri: lb://knowledge-search
+          predicates:
+            - Path=/search/**
+        # 审计服务
+        - id: knowledge-audit
+          uri: lb://knowledge-audit
+          predicates:
+            - Path=/audit/**
+        # Agent 智能问答服务
+        - id: knowledge-agent
+          uri: lb://knowledge-agent
+          predicates:
+            - Path=/agent/**
+
+# JWT 密钥（与 auth 服务保持一致，用于网关层校验 Token）
+jwt:
+  secret: ${JWT_SECRET}
+
+# Knife4j 网关聚合文档
+knife4j:
+  gateway:
+    enabled: true
+    strategy: discover
+    discover:
+      enabled: true
+      version: openapi3
